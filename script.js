@@ -7,7 +7,7 @@ const products = [
 { name: "YOM006", image: "yom006.jpg" },
 { name: "YOM007", image: "yom007.jpg" },
 { name: "YOM008", image: "yom008.jpg" },
-{ name: "YOM009", image: "yom009.jpg" },
+{ name: "YOM009", image: "yomoo9.jpg" },
 { name: "YOM010", image: "yom010.jpg" },
 { name: "YOM011", image: "yom011.jpg" },
 { name: "YOM012", image: "yom012.jpg" },
