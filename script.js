@@ -250,45 +250,129 @@ const products = [
 { name: "YOM249", category: "perfume", image: "yom249.jpg" },
 { name: "YOM250", category: "perfume", image: "yom250.jpg" },
 ];
-function showProducts(list) {
+function showProducts(list){
+
     const container = document.getElementById("productList");
+
     container.innerHTML = "";
 
     list.forEach(product => {
+
         container.innerHTML += `
         <div class="card">
-            <img src="${product.image}" alt="${product.name}">
+
+            <img src="${product.image}"
+            alt="${product.name}"
+            onclick="zoomImage('${product.image}')">
+
             <h3>${product.name}</h3>
+
             <p>${product.category}</p>
+
             <button onclick="order('${product.name}')">
                 Order on WhatsApp
             </button>
+
         </div>
         `;
+
     });
+
 }
-function searchProduct() {
 
-    const value = document.getElementById("search").value.toLowerCase().trim();
+showProducts(products);
 
-    const result = products.filter(product => {
+// ---------------- SEARCH ----------------
 
-        return (
-            product.name.toLowerCase().includes(value) ||
-            product.category.toLowerCase().includes(value)
-        );
+function searchProduct(){
 
-    });
+    const value = document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+    const result = products.filter(product =>
+
+        product.name.toLowerCase().includes(value) ||
+
+        product.category.toLowerCase().includes(value)
+
+    );
 
     showProducts(result);
+
 }
+
+// ---------------- CATEGORY ----------------
+
+function filterCategory(category){
+
+    if(category === "all"){
+
+        showProducts(products);
+
+        return;
+
+    }
+
+    const result = products.filter(product =>
+
+        product.category.toLowerCase() === category.toLowerCase()
+
+    );
+
+    showProducts(result);
+
+}
+
+// ---------------- WHATSAPP ----------------
+
 function order(name){
 
-const message = `Hello, I want to order ${name}`;
+    const message =
+    `Hello, I want to order ${name}`;
 
-window.open(
-`https://wa.me/919507059053?text=${encodeURIComponent(message)}`
-);
+    window.open(
+
+    `https://wa.me/919507059053?text=${encodeURIComponent(message)}`
+
+    );
 
 }
-showProducts(products);
+
+// ---------------- IMAGE ZOOM ----------------
+
+function zoomImage(image){
+
+    const popup = document.createElement("div");
+
+    popup.style.position = "fixed";
+    popup.style.left = "0";
+    popup.style.top = "0";
+    popup.style.width = "100%";
+    popup.style.height = "100%";
+    popup.style.background = "rgba(0,0,0,.9)";
+    popup.style.display = "flex";
+    popup.style.justifyContent = "center";
+    popup.style.alignItems = "center";
+    popup.style.cursor = "pointer";
+    popup.style.zIndex = "9999";
+
+    popup.innerHTML = `
+    <img src="${image}"
+    style="
+    max-width:90%;
+    max-height:90%;
+    border-radius:10px;
+    ">
+    `;
+
+    popup.onclick = function(){
+
+        popup.remove();
+
+    }
+
+    document.body.appendChild(popup);
+
+}
