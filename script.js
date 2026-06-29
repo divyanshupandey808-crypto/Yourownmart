@@ -267,30 +267,28 @@ function showProducts(list) {
         `;
     });
 }
-
-showProducts(products);
-
 function searchProduct() {
 
     const value = document.getElementById("search").value.toLowerCase().trim();
 
-    const result = products.filter(product =>
+    const result = products.filter(product => {
 
-        product.name.toLowerCase().includes(value) ||
+        return (
+            product.name.toLowerCase().includes(value) ||
+            product.category.toLowerCase().includes(value)
+        );
 
-        product.category.toLowerCase().includes(value)
-
-    );
+    });
 
     showProducts(result);
 }
+function order(name){
 
-function order(name) {
+const message = `Hello, I want to order ${name}`;
 
-    const message = `Hello, I want to order ${name}`;
-
-    window.open(
-        `https://wa.me/919507059053?text=${encodeURIComponent(message)}`
-    );
+window.open(
+`https://wa.me/919507059053?text=${encodeURIComponent(message)}`
+);
 
 }
+showProducts(products);
