@@ -259,7 +259,7 @@ function showProducts(list){
     list.forEach(product => {
 
         container.innerHTML += `
-        <div class="card">
+        <div class="card" onclick="window.location.href='product.html?code=${product.name}'">
 
             <img src="${product.image}"
             alt="${product.name}"
@@ -269,7 +269,7 @@ function showProducts(list){
 
             <p>${product.category}</p>
 
-            <button onclick="order('${product.name}')">
+            <button onclick="event.stopPropagation(); order('${product.name}')">
                 Order on WhatsApp
             </button>
 
