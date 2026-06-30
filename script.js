@@ -269,9 +269,10 @@ function showProducts(list){
 
             <p>${product.category}</p>
 
-            <button onclick="event.stopPropagation(); order('${product.name}')">
-                Order on WhatsApp
+            <button onclick="event.stopPropagation(); addToCart(products.find(p=>p.name==='${product.name}'))">
+             Add to Cart
             </button>
+
 
         </div>
         `;
