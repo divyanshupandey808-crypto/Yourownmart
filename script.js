@@ -252,36 +252,37 @@ const products = [
 ];
 function showProducts(list){
 
-    const container = document.getElementById("productList");
+const container=document.getElementById("productList");
 
-    container.innerHTML = "";
+container.innerHTML="";
 
-    list.forEach(product => {
+list.forEach(product=>{
 
-        container.innerHTML += `
-        <div class="card" onclick="window.location.href='product.html?code=${product.name}'">
+container.innerHTML+=`
 
-            <img src="${product.image}"
-            alt="${product.name}"
-            onclick="zoomImage('${product.image}')">
+<div class="card" onclick="window.location.href='product.html?code=${product.name}'">
 
-            <h3>${product.name}</h3>
+<img src="${product.image}" alt="${product.name}" onclick="event.stopPropagation();zoomImage('${product.image}')">
 
-            <p>${product.category}</p>
+<h3>${product.name}</h3>
 
-            <button onclick="event.stopPropagation(); addToCart(products.find(p=>p.name==='${product.name}'))">
-             Add to Cart
-            </button>
+<p>${product.category}</p>
 
+<button onclick="event.stopPropagation();addToCart(product)">
+Add to Cart
+</button>
 
-        </div>
-        `;
+<button onclick="event.stopPropagation();order('${product.name}')">
+Order on WhatsApp
+</button>
 
-    });
+</div>
+
+`;
+
+});
 
 }
-
-showProducts(products);
 
 // ---------------- SEARCH ----------------
 
@@ -358,35 +359,27 @@ function zoomImage(image){
 
 function zoomImage(image){
 
-    const popup = document.createElement("div");
+const popup=document.createElement("div");
 
-    popup.style.position = "fixed";
-    popup.style.left = "0";
-    popup.style.top = "0";
-    popup.style.width = "100%";
-    popup.style.height = "100%";
-    popup.style.background = "rgba(0,0,0,.9)";
-    popup.style.display = "flex";
-    popup.style.justifyContent = "center";
-    popup.style.alignItems = "center";
-    popup.style.cursor = "pointer";
-    popup.style.zIndex = "9999";
+popup.style.position="fixed";
+popup.style.left="0";
+popup.style.top="0";
+popup.style.width="100%";
+popup.style.height="100%";
+popup.style.background="rgba(0,0,0,.9)";
+popup.style.display="flex";
+popup.style.justifyContent="center";
+popup.style.alignItems="center";
+popup.style.zIndex="9999";
 
-    popup.innerHTML = `
-    <img src="${image}"
-    style="
-    max-width:90%;
-    max-height:90%;
-    border-radius:10px;
-    ">
-    `;
+popup.innerHTML=`
+<img src="${image}" style="max-width:90%;max-height:90%;border-radius:10px;">
+`;
 
-    popup.onclick = function(){
+popup.onclick=function(){
+popup.remove();
+}
 
-        popup.remove();
-
-    }
-
-    document.body.appendChild(popup);
+document.body.appendChild(popup);
 
 }
