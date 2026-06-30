@@ -286,7 +286,6 @@ Order on WhatsApp
 
 // ---------------- SEARCH ----------------
 
-function searchProduct(){
 
     const value = document
     .getElementById("search")
@@ -357,7 +356,6 @@ function zoomImage(image){
 
 // ---------------- IMAGE ZOOM ----------------
 
-function zoomImage(image){
 
 const popup=document.createElement("div");
 
