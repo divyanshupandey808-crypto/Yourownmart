@@ -327,17 +327,30 @@ function filterCategory(category){
 
 // ---------------- WHATSAPP ----------------
 
+function addToCart(product){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push(product);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+alert(product.name + " added to cart!");
+
+}
+
+// PHIR NICHE YE RAHE
+
 function order(name){
 
-    const message =
-    `Hello, I want to order ${name}`;
+const message = `Hello, I want to order ${name}`;
 
-    window.open(
+window.open(`https://wa.me/919507059053?text=${encodeURIComponent(message)}`);
 
-    `https://wa.me/919507059053?text=${encodeURIComponent(message)}`
+}
 
-    );
-
+function zoomImage(image){
+...
 }
 
 // ---------------- IMAGE ZOOM ----------------
